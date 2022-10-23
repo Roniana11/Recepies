@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="serach-container">
+        <input type="checkbox" name="" id="dairy-input" />
+        <label for="dairy-input">Dairy Free</label>
+        <input type="checkbox" name="" id="gluten-input" />
+        <label for="gluten-input">Gluten Free</label>
+        <input type="text" id="recipe-input" />
+        <button id="serach-btn">Search</button>
+      </div>
+      <div id="recipes-container"></div>
+    </div>
+    <div id="demo-modal" class="modal"></div>
+    <script id="recipe-template" type="text/x-handlebars-template">
+      {{#each recipes}}
+        <div class="recipe-container card" id="{{idMeal}}">
+          <div class="img-container">
+            <img
+              src="{{thumbnail}}"
+              alt="{{title}}"
+            />
+          </div>
+          <h3>{{title}}</h3>
+          <div class="ingredients-container">
+            <h4>ingredients:</h4>
+            <ul class="ingredients-list">
+              {{#each ingredients}}
+                <li class="list-item">
+                  {{this}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+          <button class="instructions-btn">instructions</button>
+          <a href="{{href}}">Watch on youtube</a>
+        </div>
+      {{/each}}
+    </script>
+    <script id="modal-template" type="text/x-handlebars-template">
+      <div class="modal__content">
+        <h1>{{title}}</h1>
+        <div>{{{content}}}</div>
+        <button class="close-btn">x</button>
+      </div>
+    </script>
+    <script src="./src/services/recipesApi.js"></script>
+    <script src="./src/models/model.js"></script>
+    <script src="./src/view/recipesRenderer.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
